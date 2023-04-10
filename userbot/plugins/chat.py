@@ -6,7 +6,6 @@ from .utils.fetcher import get_user
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
 
-import requests
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["kick"], prefixes=config["prefixes"]))
 async def kick(_, msg):
@@ -173,16 +172,4 @@ async def leave(_, msg):
 
     await msg.edit_text("<b>This chat is not cool. Bye!</b>")
     await chat.leave()
-
-    
-@app.on_message(filters.outgoing & filters.text & filters.command(["udict"], prefixes=config["prefixes"]))
-async def udict(_, msg):
-    chat = msg.chat
-    term = parse_args(msg).join(" ")
-    try:
-        data = requests.get(f"https://api.urbandictionary.com/v0/define?term={term}").json()['list'][0]['definition'].replace("[", "").replace("]", "")
-        await msg.reply(f"'{term}' is defined as:\n{data}")
-    except:
-        await msg.reply(f"I'm unable to find a definition for '{term}'.")
-    return
     
