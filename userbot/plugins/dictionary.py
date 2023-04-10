@@ -4,7 +4,6 @@ from .utils.parser import parse_args
 from pyrogram import filters
 
 import requests
-import wikipedia
 
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["udcit", "ud", "urbandictionary"], prefixes=config["prefixes"]))
