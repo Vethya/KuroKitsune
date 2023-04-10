@@ -13,4 +13,4 @@ A minimal personal telegram userbot.
 ## Run KuroKitsune
 `python -m userbot`
 ## Contributions
-Any contributions will be appreciated. Refer to the issues tab to see what you can do. Coding style must obviously clean and matching the codebase.
+Any contributions will be appreciated. Refer to the issues tab to see what you can do. Coding style must obviously be clean and matching the codebase.
