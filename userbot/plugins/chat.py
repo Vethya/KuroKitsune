@@ -6,6 +6,7 @@ from .utils.fetcher import get_user
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
 
+
 @app.on_message(filters.outgoing & filters.text & filters.command(["kick"], prefixes=config["prefixes"]))
 async def kick(_, msg):
     chat = msg.chat
@@ -171,3 +172,4 @@ async def leave(_, msg):
 
     await msg.edit_text("<b>This chat is not cool. Bye!</b>")
     await chat.leave()
+    
