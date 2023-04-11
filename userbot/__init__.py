@@ -3,6 +3,8 @@ import os
 
 from pyrogram import Client
 
+HELP_DICT = {}
+
 with open("config.json", "r") as file:
     config = json.load(file)
 

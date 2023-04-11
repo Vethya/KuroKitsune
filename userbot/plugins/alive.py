@@ -1,6 +1,6 @@
 import sys
 import time
-from userbot import app, config
+from userbot import app, config, HELP_DICT
 
 import pyrogram
 from pyrogram import filters
@@ -25,3 +25,14 @@ async def ping(_, msg):
         "<b>Pong!</b>\n" +
         f"<code>{latency}</code> ms"
     )
+
+
+
+HELP_DICT.update(
+    {
+        "Alive":
+            "<b>Commands:</b>\n"
+            "- /start or /alive: Check if KuroKitsune is alive and also contains additional information.\n"
+            "- /ping: See KuroKitsune ping.\n"
+    }
+)
