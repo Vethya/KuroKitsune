@@ -5,7 +5,6 @@ from pyrogram import filters
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["info",  "user", "whois"], prefixes=config["prefixes"]))
 async def info(_, msg):
-    chat = msg.chat
     args = parse_args(msg)
 
     try:
