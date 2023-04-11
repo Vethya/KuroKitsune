@@ -1,4 +1,4 @@
-from userbot import app, config
+from userbot import app, config, HELP_DICT
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -15,3 +15,11 @@ async def wikipedia(_, msg):
         await msg.edit_text(f"<b>Here is the Wikipedia summary for {term}:</b>\n{page.summary}\n\nYou can find more information on {page.title} [here]({page.fullurl}).")
     except:
         await msg.edit_text(f"I'm unable to find a wikipedia entry for '{term}'.")
+
+HELP_DICT.update(
+    {
+        "Wikipedia":
+            "<b>Commands:</b>\n"
+            "- /wiki or /wikipedia: Get a Wikipedia summary of a query on Wikipedia.\n"
+    }
+)

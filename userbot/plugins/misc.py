@@ -1,4 +1,4 @@
-from userbot import app, config
+from userbot import app, config, HELP_DICT
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -38,3 +38,11 @@ async def info(_, msg):
     text += f"Is Premium: <b>{entity.is_premium}</b>\n"
 
     await msg.edit_text(text)
+
+HELP_DICT.update(
+    {
+        "Misc":
+            "<b>Commands:</b>\n"
+            "- /info: Get information on the target user.\n"
+    }
+)

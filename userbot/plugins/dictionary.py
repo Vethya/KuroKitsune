@@ -1,4 +1,4 @@
-from userbot import app, config
+from userbot import app, config, HELP_DICT
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -21,3 +21,11 @@ async def urbandictionary(_, msg):
       await msg.edit_text(f"I'm unable to find a definition for '{term}'.")
       
     return
+
+HELP_DICT.update(
+   {
+      "Dictionary":
+          "<b>Commands:</b>\n"
+          "- /udict or /ud or /urbandictionary: Get a definition of a query on Urban Dictionary.\n"
+   }
+)
