@@ -6,7 +6,7 @@ from pyrogram import filters
 import requests
 
 
-@app.on_message(filters.outgoing & filters.text & filters.command(["udcit", "ud", "urbandictionary"], prefixes=config["prefixes"]))
+@app.on_message(filters.outgoing & filters.text & filters.command(["udict", "ud", "urbandictionary"], prefixes=config["prefixes"]))
 async def urbandictionary(_, msg):
     term = " ".join(parse_args(msg))
 
