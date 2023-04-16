@@ -29,3 +29,31 @@ HELP_DICT.update(
           "- /udict or /ud or /urbandictionary: Get a definition of a query on Urban Dictionary.\n"
    }
 )
+
+@app.on_message(filters.outgoing & filters.text & filters.command(["jisho"], prefixes=config["prefixes"]))
+async def jisho(_, msg):
+    term = " ".join(parse_args(msg))
+
+    data = requests.get(f"https://jisho.org/api/v1/search/words?keyword={term}").json()["data"]
+    if len(data) == 0:
+        await msg.edit_text("No results found.")
+        return
+    data = data[0]
+
+    if data['japanese'][0]['reading']:
+        text = f"<b>Japanese:</b> {data['japanese'][0]['reading']}\n"
+    elif data['japanese'][0]['word']:
+        text = f"<b>Japanese:</b> {data['japanese'][0]['word']}\n"
+    elif (data['japanese'][0]['reading'], data['japanese'][0]['word']):
+        text = f"<b>Japanese:</b> {data['japanese'][0]['reading']} ({data['japanese'][0]['word']})\n"
+
+    senses = data["senses"]
+    if len(senses) > 1:
+        for sense in senses:
+            eng_defs = sense['english_definitions']
+            text += f"- {', '.join(eng_defs)}\n" if len(eng_defs) > 1 else f"- {eng_defs[0]}\n"
+    else:
+        text += f"- {senses[0]['english_definitions']}\n"
+
+    await msg.edit_text(text)
+    return
