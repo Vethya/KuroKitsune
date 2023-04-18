@@ -22,14 +22,6 @@ async def urbandictionary(_, msg):
       
     return
 
-HELP_DICT.update(
-   {
-      "Dictionary":
-          "<b>Commands:</b>\n"
-          "- /udict or /ud or /urbandictionary: Get a definition of a query on Urban Dictionary.\n"
-   }
-)
-
 @app.on_message(filters.outgoing & filters.text & filters.command(["jisho"], prefixes=config["prefixes"]))
 async def jisho(_, msg):
     term = " ".join(parse_args(msg))
@@ -57,3 +49,12 @@ async def jisho(_, msg):
 
     await msg.edit_text(text)
     return
+
+HELP_DICT.update(
+   {
+        "Dictionary":
+            "<b>Commands:</b>\n"
+            "- /udict or /ud or /urbandictionary: Get a definition of a query on Urban Dictionary.\n"
+            "- /jisho: Get a japanese definition of a query on jisho.org.\n"
+   }
+)
