@@ -1,4 +1,4 @@
-from userbot import app, config, HELP_DICT
+from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -38,10 +38,14 @@ async def info(_, msg):
 
     await msg.edit_text(text)
 
+CMD_TEXT = """
+<b>Commands:</b>
+- <code>{prefix}info</code>: Get information on the target user.
+""".strip().format(prefix = FIRST_CMD_PREFIX)
+
 HELP_DICT.update(
     {
         "Misc":
-            "<b>Commands:</b>\n"
-            "- /info: Get information on the target user.\n"
+            CMD_TEXT
     }
 )

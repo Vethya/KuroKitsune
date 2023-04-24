@@ -3,10 +3,11 @@ import os
 
 from pyrogram import Client
 
-HELP_DICT = {}
-
 with open("config.json", "r") as file:
     config = json.load(file)
+
+HELP_DICT = {}
+FIRST_CMD_PREFIX = config["prefixes"][0]
 
 app = Client(
     "KuroKitsune",

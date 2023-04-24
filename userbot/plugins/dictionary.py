@@ -1,4 +1,4 @@
-from userbot import app, config, HELP_DICT
+from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -50,11 +50,15 @@ async def jisho(_, msg):
     await msg.edit_text(text)
     return
 
+CMD_TEXT = """
+<b>Commands:</b>
+- <code>{prefix}udict</code> or <code>{prefix}ud</code> or <code>{prefix}urbandictionary</code>: Get a definition of a query on Urban Dictionary.
+- <code>{prefix}jisho</code>: Get a japanese definition of a query on jisho.org.
+""".strip().format(prefix = FIRST_CMD_PREFIX)
+
 HELP_DICT.update(
    {
         "Dictionary":
-            "<b>Commands:</b>\n"
-            "- /udict or /ud or /urbandictionary: Get a definition of a query on Urban Dictionary.\n"
-            "- /jisho: Get a japanese definition of a query on jisho.org.\n"
+            CMD_TEXT
    }
 )

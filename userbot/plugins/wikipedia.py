@@ -1,4 +1,4 @@
-from userbot import app, config, HELP_DICT
+from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -16,10 +16,14 @@ async def wikipedia(_, msg):
     except:
         await msg.edit_text(f"I'm unable to find a wikipedia entry for '{term}'.")
 
+CMD_TEXT = """
+<b>Commands:</b>
+- <code>{prefix}wiki</code> or <code>{prefix}wikipedia</code>: Get a Wikipedia summary of a query on Wikipedia.
+""".strip().format(prefix = FIRST_CMD_PREFIX)
+
 HELP_DICT.update(
     {
         "Wikipedia":
-            "<b>Commands:</b>\n"
-            "- /wiki or /wikipedia: Get a Wikipedia summary of a query on Wikipedia.\n"
+            CMD_TEXT
     }
 )

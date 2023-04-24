@@ -1,4 +1,4 @@
-from userbot import app, config, HELP_DICT
+from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.permissions import is_admin
 from .utils.parser import parse_args, parse_duration
 from .utils.fetcher import get_user
@@ -173,15 +173,19 @@ async def leave(_, msg):
     await msg.edit_text("<b>This chat is not cool. Bye!</b>")
     await chat.leave()
     
+CMD_TEXT = """
+<b>Commands:</b>"
+- <code>{prefix}kick</code>: Kick a user from a group.
+- <code>{prefix}ban</code>: Ban a user from a group.
+- <code>{prefix}unban</code>: Unban a user in a group.
+- <code>{prefix}mute</code>: Mute a user in a group.
+- <code>{prefix}unmute</code>: Unmute a user in a group.
+- <code>{prefix}leave</code>: Leave a group.
+""".strip().format(prefix = FIRST_CMD_PREFIX)
+
 HELP_DICT.update(
     {
         "Chat":
-            "<b>Commands:</b>\n"
-            "- /kick: Kick a user from a group.\n"
-            "- /ban: Ban a user from a group.\n"
-            "- /unban: Unban a user in a group.\n"
-            "- /mute: Mute a user in a group.\n"
-            "- /unmute: Unmute a user in a group.\n"
-            "- /leave: Leave a group.\n"
+            CMD_TEXT
     }
 )

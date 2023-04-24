@@ -1,4 +1,4 @@
-from userbot import app, config, HELP_DICT
+from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.parser import parse_args
 
 from pyrogram import filters
@@ -22,10 +22,14 @@ async def help_(_, msg):
 
         await msg.edit_text(text)
 
+CMD_TEXT = """
+<b>Commands:</b>
+- <code>{prefix}help</code>: Get a list of all plugins or a help for each one.
+""".strip().format(prefix = FIRST_CMD_PREFIX)
+
 HELP_DICT.update(
     {
         "Help":
-            "<b>Commands:</b>\n"
-            "- /help: Get a list of all plugins or a help for each one.\n"
+            CMD_TEXT
     }
 )
