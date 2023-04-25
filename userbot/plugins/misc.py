@@ -2,6 +2,7 @@ from userbot import app, config, HELP_DICT, FIRST_CMD_PREFIX
 from .utils.parser import parse_args
 
 from pyrogram import filters
+from speedtest import Speedtest
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["info",  "user", "whois"], prefixes=config["prefixes"]))
 async def info(_, msg):
@@ -38,9 +39,33 @@ async def info(_, msg):
 
     await msg.edit_text(text)
 
+@app.on_message(filters.outgoing & filters.text & filters.command(["speedtest", "speed"], prefixes=config["prefixes"]))
+async def speedtest(_, msg):
+    await msg.edit_text("<code>Testing...</code>")
+
+    servers = []
+    threads = None
+
+    s = Speedtest()
+    s.get_servers(servers)
+    s.get_best_server()
+    s.upload(threads=threads)
+    results_dict = s.results.dict()
+
+    ping = results_dict["ping"]
+    download = results_dict["download"] * (10 ** - 6) # Convert bps to mbps
+    upload = results_dict["upload"] * (10 ** - 6) # Convert bps to mbps
+    await msg.edit_text(
+        "<b>Speedtest results:</b>\n"
+        f"Ping: <code>{ping} ms</code>\n"
+        f"Download speed: <code>{download} Mbps</code>\n"
+        f"Upload speed: <code>{upload} Mbps</code>"
+    )
+
 CMD_TEXT = """
 <b>Commands:</b>
 - <code>{prefix}info</code>: Get information on the target user.
+- <code>{prefix}speedtest</code> or <code>{prefix}speed</code>: Get the speedtest results of the current network using the speedtest.net API.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(
