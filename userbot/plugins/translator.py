@@ -60,7 +60,7 @@ Get a translation of a sentence on Google Translate. Source can be omitted for a
 
 HELP_DICT.update(
     {
-        "Wikipedia":
+        "wikipedia":
             CMD_TEXT
     }
 )

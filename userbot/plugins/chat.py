@@ -185,7 +185,7 @@ CMD_TEXT = """
 
 HELP_DICT.update(
     {
-        "Chat":
+        "chat":
             CMD_TEXT
     }
 )

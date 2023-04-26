@@ -18,18 +18,18 @@ async def help_(_, msg):
     except IndexError:
         text = "Here are the help for all available plugins:\n"
         for plugin in sorted(HELP_DICT):
-            text += f"- {plugin}\n"
+            text += f"- `{plugin}`\n"
 
         await msg.edit_text(text)
 
 CMD_TEXT = """
 **Commands:**
-- `{prefix}help`: Get a list of all plugins or a help for each one.
+- `{prefix}help` or `{prefix} <cmd>`: Get a list of all plugins or a help for each one.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(
     {
-        "Help":
+        "help":
             CMD_TEXT
     }
 )

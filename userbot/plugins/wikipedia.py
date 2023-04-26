@@ -23,7 +23,7 @@ CMD_TEXT = """
 
 HELP_DICT.update(
     {
-        "Wikipedia":
+        "wikipedia":
             CMD_TEXT
     }
 )

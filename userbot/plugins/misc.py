@@ -70,7 +70,7 @@ CMD_TEXT = """
 
 HELP_DICT.update(
     {
-        "Misc":
+        "misc":
             CMD_TEXT
     }
 )

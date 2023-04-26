@@ -34,7 +34,7 @@ CMD_TEXT = """
 
 HELP_DICT.update(
     {
-        "Alive":
+        "alive":
             CMD_TEXT
     }
 )

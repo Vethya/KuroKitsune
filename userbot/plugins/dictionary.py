@@ -58,7 +58,7 @@ CMD_TEXT = """
 
 HELP_DICT.update(
    {
-        "Dictionary":
+        "dictionary":
             CMD_TEXT
    }
 )
