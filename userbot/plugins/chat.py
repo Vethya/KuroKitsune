@@ -14,25 +14,25 @@ async def kick(_, msg):
     try:
         user = await get_user(args[0])
     except:
-        await msg.edit_text("<b>Invalid Username or ID</b>")
+        await msg.edit_text("**Invalid Username or ID**")
         return
 
     if user.id == msg.from_user.id:
-        await msg.edit_text("Please don't kick yourself. Please use <b>.leave</b> instead, if you want to leave")
+        await msg.edit_text("Please don't kick yourself. Please use `.leave` instead, if you want to leave")
         return
 
     if not await is_admin(chat.id, msg.from_user.id):
-        await msg.edit_text("<b>Insufficient Permission</b>")
+        await msg.edit_text("**Insufficient Permission**")
         return
 
     try:
         await chat.kick_member(user.id)
         await chat.unban_member(user.id)
     except:
-        await msg.edit_text("<b>Failed to kick user</b>")
+        await msg.edit_text("**Failed to kick user**")
         return
 
-    await msg.edit_text(f"Kicked <b>{user.first_name}</b> from <b>{chat.title}</b>")
+    await msg.edit_text(f"Kicked **{user.first_name}** from **{chat.title}**")
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["ban"], prefixes=config["prefixes"]))
 async def ban(_, msg):
@@ -41,15 +41,15 @@ async def ban(_, msg):
     try:
         user = await get_user(args[0])
     except:
-        await msg.edit_text("<b>Invalid Username or ID</b>")
+        await msg.edit_text("**Invalid Username or ID**")
         return
 
     if user.id == msg.from_user.id: 
-        await msg.edit_text("Please don't ban yourself. Please use <b>.leave</b> instead, if you want to leave")
+        await msg.edit_text("Please don't ban yourself. Please use `.leave` instead, if you want to leave")
         return
 
     if not await is_admin(chat.id, msg.from_user.id):
-        await msg.edit_text("<b>Insufficient Permission</b>")
+        await msg.edit_text("**Insufficient Permission**")
         return
 
     time_text = args[1]
@@ -59,17 +59,17 @@ async def ban(_, msg):
         try:
             await chat.kick_member(user.id, duration)
         except:
-            await msg.edit_text("<b>Failed to ban user</b>")
+            await msg.edit_text("**Failed to ban user**")
             return
-        await msg.edit_text(f"Banned <b>{user.first_name}</b> from <b>{chat.title}</b> for {time_text}")
+        await msg.edit_text(f"Banned **{user.first_name}** from **{chat.title}** for {time_text}")
 
     else:
         try:
             await chat.kick_member(user.id)
         except:
-            await msg.edit_text("<b>Failed to ban user</b>")
+            await msg.edit_text("**Failed to ban user**")
             return
-        await msg.edit_text(f"Banned <b>{user.first_name}</b> from <b>{chat.title}</b>")
+        await msg.edit_text(f"Banned **{user.first_name}** from **{chat.title}**")
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["unban"], prefixes=config["prefixes"]))
 async def unban(_, msg):
@@ -78,29 +78,29 @@ async def unban(_, msg):
     try:
         user = await get_user(args[0])
     except:
-        await msg.edit_text("<b>Invalid Username or ID</b>")
+        await msg.edit_text("**Invalid Username or ID**")
         return
 
     if not await is_admin(chat.id, msg.from_user.id):
-        await msg.edit_text("<b>Insufficient Permission</b>")
+        await msg.edit_text("**Insufficient Permission**")
         return
     
     try:
         member = await chat.get_member(user.id)
     except:
-        await msg.edit_text("<b>Invalid Member</b>")
+        await msg.edit_text("**Invalid Member**")
         return
 
     if member.status not in ("left", "kicked"):
-        await msg.edit("<b>User is not banned</b>")
+        await msg.edit("**User is not banned**")
         return
 
     try:
         await chat.unban_member(user.id)
     except:
-        await msg.edit_text("<b>Failed to unban user</b>")
+        await msg.edit_text("**Failed to unban user**")
         return
-    await msg.edit_text(f"Unbanned <b>{user.first_name}</b> in <b>{chat.title}</b>")
+    await msg.edit_text(f"Unbanned **{user.first_name}** in **{chat.title}**")
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["mute"], prefixes=config["prefixes"]))
 async def mute(_, msg):
@@ -109,11 +109,11 @@ async def mute(_, msg):
     try:
         user = await get_user(args[0])
     except:
-        await msg.edit_text("<b>Invalid Username or ID</b>")
+        await msg.edit_text("**Invalid Username or ID**")
         return
 
     if not await is_admin(chat.id, msg.from_user.id):
-        await msg.edit_text("<b>Insufficient Permission</b>")
+        await msg.edit_text("**Insufficient Permission**")
         return
 
     time_text = args[1]
@@ -123,17 +123,17 @@ async def mute(_, msg):
         try:
             await chat.restrict_member(user.id, ChatPermissions(can_send_messages=False), duration)
         except:
-            await msg.edit_text("<b>Failed to mute user</b>")
+            await msg.edit_text("**Failed to mute user**")
             return
-        await msg.edit_text(f"Muted <b>{user.first_name}</b> in <b>{chat.title}</b> for {time_text}")
+        await msg.edit_text(f"Muted **{user.first_name}** in **{chat.title}** for {time_text}")
 
     else:
         try:
             await chat.restrict_member(user.id, ChatPermissions(can_send_messages=False))
         except:
-            await msg.edit_text("<b>Failed to mute user</b>")
+            await msg.edit_text("**Failed to mute user**")
             return
-        await msg.edit_text(f"Muted <b>{user.first_name}</b> in <b>{chat.title}</b>")
+        await msg.edit_text(f"Muted **{user.first_name}** in **{chat.title}**")
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["unmute"], prefixes=config["prefixes"]))
 async def unmute(_, msg):
@@ -142,45 +142,45 @@ async def unmute(_, msg):
     try:
         user = await get_user(args[0])
     except:
-        await msg.edit_text("<b>Invalid Username or ID</b>")
+        await msg.edit_text("**Invalid Username or ID**")
         return
 
     if not await is_admin(chat.id, msg.from_user.id):
-        await msg.edit_text("<b>Insufficient Permission</b>")
+        await msg.edit_text("**Insufficient Permission**")
         return
     
     try:
         member = await chat.get_member(user.id)
     except:
-        await msg.edit_text("<b>Invalid Member</b>")
+        await msg.edit_text("**Invalid Member**")
         return
 
     if member.can_send_messages:
-        await msg.edit("<b>User is not muted</b>")
+        await msg.edit("**User is not muted**")
         return
 
     try:
         await chat.restrict_member(user.id, ChatPermissions(can_send_messages=True))
     except:
-        await msg.edit_text("<b>Failed to unmute user</b>")
+        await msg.edit_text("**Failed to unmute user**")
         return
-    await msg.edit_text(f"Unmuted <b>{user.first_name}</b> in <b>{chat.title}</b>")
+    await msg.edit_text(f"Unmuted **{user.first_name}** in **{chat.title}**")
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["leave"], prefixes=config["prefixes"]))
 async def leave(_, msg):
     chat = msg.chat
 
-    await msg.edit_text("<b>This chat is not cool. Bye!</b>")
+    await msg.edit_text("This chat is not cool. Bye!")
     await chat.leave()
     
 CMD_TEXT = """
-<b>Commands:</b>"
-- <code>{prefix}kick</code>: Kick a user from a group.
-- <code>{prefix}ban</code>: Ban a user from a group.
-- <code>{prefix}unban</code>: Unban a user in a group.
-- <code>{prefix}mute</code>: Mute a user in a group.
-- <code>{prefix}unmute</code>: Unmute a user in a group.
-- <code>{prefix}leave</code>: Leave a group.
+**Commands:**"
+- `{prefix}kick`: Kick a user from a group.
+- `{prefix}ban`: Ban a user from a group.
+- `{prefix}unban`: Unban a user in a group.
+- `{prefix}mute`: Mute a user in a group.
+- `{prefix}unmute`: Unmute a user in a group.
+- `{prefix}leave`: Leave a group.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(

@@ -11,9 +11,9 @@ async def help_(_, msg):
         plugin = args[0]
 
         if plugin in HELP_DICT:
-            await msg.edit_text(f"Help for <b>{plugin}</b>:\n\n{HELP_DICT[plugin]}")
+            await msg.edit_text(f"Help for **{plugin}**:\n\n{HELP_DICT[plugin]}")
         else:
-            await msg.edit_text(f"No plugin found with the name <b>{plugin}</b>.")
+            await msg.edit_text(f"No plugin found with the name **{plugin}**.")
             return
     except IndexError:
         text = "Here are the help for all available plugins:\n"
@@ -23,8 +23,8 @@ async def help_(_, msg):
         await msg.edit_text(text)
 
 CMD_TEXT = """
-<b>Commands:</b>
-- <code>{prefix}help</code>: Get a list of all plugins or a help for each one.
+**Commands:**
+- `{prefix}help`: Get a list of all plugins or a help for each one.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(

@@ -20,8 +20,8 @@ async def translate(_, msg):
             sentence_lang = await t.detect(sentence)
 
             await msg.edit_text(
-                f"<b>Translated</b> ({sentence_lang}-{lang})\n"
-                f"<code>{translation.text}</code>"
+                f"**Translated** ({sentence_lang}-{lang})\n"
+                f"`{translation.text}`"
             )
 
         else:
@@ -36,8 +36,8 @@ async def translate(_, msg):
         translation = await t.translate(sentence, sourceLang=source_lang, targetlang=target_lang)
 
         await msg.edit_text(
-            f"<b>Translated</b> ({source_lang}-{target_lang})\n"
-            f"<code>{translation.text}</code>"
+            f"**Translated** ({source_lang}-{target_lang})\n"
+            f"`{translation.text}`"
         )
     
     else:
@@ -48,13 +48,13 @@ async def translate(_, msg):
         sentence_lang = await t.detect(sentence)
 
         await msg.edit_text(
-            f"<b>Translated</b> ({sentence_lang}-{lang})\n"
-            f"<code>{translation.text}</code>"
+            f"**Translated** ({sentence_lang}-{lang})\n"
+            f"`{translation.text}`"
         )
 
 CMD_TEXT = """
-<b>Commands:</b>
-- <code>{prefix}tr</code> or <code>{prefix}tl</code> or <code>{prefix}translate</code> <source> <target> <sentence>: 
+**Commands:**
+- `{prefix}tr` or `{prefix}tl` or `{prefix}translate` <source> <target> <sentence>: 
 Get a translation of a sentence on Google Translate. Source can be omitted for autodetect and target can also be omitted if you reply.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 

@@ -16,9 +16,9 @@ async def urbandictionary(_, msg):
         example = data['example'].replace("[", "").replace("]", "")
         thumbs_up = data['thumbs_up']
         thumbs_down = data['thumbs_down']
-        await msg.edit_text(f"<b>'{term}' is defined as:</b>\n{definition}\n\n<b>Example usage:</b>\n__{example}__\n\n<b>Rating:</b> 👍{thumbs_up} 👎{thumbs_down}")
+        await msg.edit_text(f"**{term} is defined as:**\n{definition}\n\n**Example usage:**\n__{example}__\n\n**Rating:** 👍{thumbs_up} 👎{thumbs_down}")
     except:
-      await msg.edit_text(f"I'm unable to find a definition for '{term}'.")
+      await msg.edit_text(f"I'm unable to find a definition for {term}.")
       
     return
 
@@ -33,11 +33,11 @@ async def jisho(_, msg):
     data = data[0]
 
     if data['japanese'][0]['reading']:
-        text = f"<b>Japanese:</b> {data['japanese'][0]['reading']}\n"
+        text = f"**Japanese:** {data['japanese'][0]['reading']}\n"
     elif data['japanese'][0]['word']:
-        text = f"<b>Japanese:</b> {data['japanese'][0]['word']}\n"
+        text = f"**Japanese:** {data['japanese'][0]['word']}\n"
     elif (data['japanese'][0]['reading'], data['japanese'][0]['word']):
-        text = f"<b>Japanese:</b> {data['japanese'][0]['reading']} ({data['japanese'][0]['word']})\n"
+        text = f"**Japanese:** {data['japanese'][0]['reading']} ({data['japanese'][0]['word']})\n"
 
     senses = data["senses"]
     if len(senses) > 1:
@@ -51,9 +51,9 @@ async def jisho(_, msg):
     return
 
 CMD_TEXT = """
-<b>Commands:</b>
-- <code>{prefix}udict</code> or <code>{prefix}ud</code> or <code>{prefix}urbandictionary</code>: Get a definition of a query on Urban Dictionary.
-- <code>{prefix}jisho</code>: Get a japanese definition of a query on jisho.org.
+**Commands:**
+- `{prefix}udict` or `{prefix}ud` or `{prefix}urbandictionary`: Get a definition of a query on Urban Dictionary.
+- `{prefix}jisho`: Get a japanese definition of a query on jisho.org.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(

@@ -29,19 +29,19 @@ async def info(_, msg):
             return
 
     text = f"USER INFO:\n\n"
-    text += f"ID: <code>{entity.id}</code>\n"
+    text += f"ID: `{entity.id}`\n"
     text += f"Name: {entity.first_name} {entity.last_name if entity.last_name else ''}\n"
     text += f"Username: @{entity.username}\n"
     text += f"Permalink: <a href='tg://user?id={entity.id}'>link</a>\n"
-    text += f"Is Bot: <b>{entity.is_bot}</b>\n"
-    text += f"Is Verified: <b>{entity.is_verified}</b>\n"
-    text += f"Is Premium: <b>{entity.is_premium}</b>\n"
+    text += f"Is Bot: **{entity.is_bot}**\n"
+    text += f"Is Verified: **{entity.is_verified}**\n"
+    text += f"Is Premium: **{entity.is_premium}**\n"
 
     await msg.edit_text(text)
 
 @app.on_message(filters.outgoing & filters.text & filters.command(["speedtest", "speed"], prefixes=config["prefixes"]))
 async def speedtest(_, msg):
-    await msg.edit_text("<code>Testing...</code>")
+    await msg.edit_text("`Testing...`")
 
     servers = []
     threads = None
@@ -56,16 +56,16 @@ async def speedtest(_, msg):
     download = results_dict["download"] * (10 ** - 6) # Convert bps to mbps
     upload = results_dict["upload"] * (10 ** - 6) # Convert bps to mbps
     await msg.edit_text(
-        "<b>Speedtest results:</b>\n"
-        f"Ping: <code>{ping} ms</code>\n"
-        f"Download speed: <code>{download} Mbps</code>\n"
-        f"Upload speed: <code>{upload} Mbps</code>"
+        "**Speedtest results:**\n"
+        f"Ping: `{ping} ms`\n"
+        f"Download speed: `{download} Mbps`\n"
+        f"Upload speed: `{upload} Mbps`"
     )
 
 CMD_TEXT = """
-<b>Commands:</b>
-- <code>{prefix}info</code>: Get information on the target user.
-- <code>{prefix}speedtest</code> or <code>{prefix}speed</code>: Get the speedtest results of the current network using the speedtest.net API.
+**Commands:**
+- `{prefix}info`: Get information on the target user.
+- `{prefix}speedtest` or `{prefix}speed`: Get the speedtest results of the current network using the speedtest.net API.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(

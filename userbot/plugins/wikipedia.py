@@ -12,13 +12,13 @@ async def wikipedia(_, msg):
 
     try:
         page = wiki.page(term)
-        await msg.edit_text(f"<b>Here is the Wikipedia summary for {term}:</b>\n{page.summary}\n\nYou can find more information on {page.title} [here]({page.fullurl}).")
+        await msg.edit_text(f"**Here is the Wikipedia summary for {term}:**\n{page.summary}\n\nYou can find more information on {page.title} [here]({page.fullurl}).")
     except:
         await msg.edit_text(f"I'm unable to find a wikipedia entry for '{term}'.")
 
 CMD_TEXT = """
-<b>Commands:</b>
-- <code>{prefix}wiki</code> or <code>{prefix}wikipedia</code>: Get a Wikipedia summary of a query on Wikipedia.
+**Commands:**
+- `{prefix}wiki` or `{prefix}wikipedia`: Get a Wikipedia summary of a query on Wikipedia.
 """.strip().format(prefix = FIRST_CMD_PREFIX)
 
 HELP_DICT.update(
